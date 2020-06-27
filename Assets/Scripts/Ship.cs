@@ -12,16 +12,13 @@ public class Ship : MonoBehaviour
 
     private float fireCooldown = 0f;
 
-    void FixedUpdate()
+    void Update()
     {
         var x = Input.GetAxisRaw("Horizontal");
         var y = Input.GetAxisRaw("Vertical");
 
         GetComponent<Rigidbody2D>().velocity = new Vector2(x, y) * movementSpeed;
-    }
 
-    void Update()
-    {
         fireCooldown -= Time.deltaTime;
         if(Input.GetKey("space") && fireCooldown <= 0)
         {

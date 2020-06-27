@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+
     void Start()
     {
         StartCoroutine(Move());
-    }
-
-    void Update()
-    {
-        
     }
 
     private IEnumerator Move()
@@ -21,6 +21,5 @@ public class Enemy : MonoBehaviour
             collider.AddForce(Vector2.down * 300);
             yield return new WaitForSeconds(1.0f);
         }
-
     }
 }

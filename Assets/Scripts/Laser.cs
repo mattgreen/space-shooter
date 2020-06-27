@@ -8,6 +8,11 @@ public class Laser : MonoBehaviour
 
     public float damage = 20f;
 
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.name == "Ship")
@@ -25,10 +30,5 @@ public class Laser : MonoBehaviour
     {
         GetComponent<Rigidbody2D>().AddForce(Vector3.up * speed, ForceMode2D.Impulse);
         GetComponent<AudioSource>().Play(0);
-    }
-
-    void OnBecameInvisible ()
-    {
-        Destroy(gameObject);
     }
 }
