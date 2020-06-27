@@ -8,9 +8,9 @@ public class AsteroidSpawner : MonoBehaviour
 
     public int maxSpeed = 40;
 
-    public int spawnCount = 3;
+    public int spawnCount = 7;
 
-    public float spawnDelay = 3.0f;
+    public float spawnDelay = 1.0f;
 
     void Start()
     {
@@ -26,7 +26,7 @@ public class AsteroidSpawner : MonoBehaviour
         var horizontalMin = -halfWidth;
         var horizontalMax =  halfWidth;
 
-        return new Vector2(Random.Range(horizontalMin, horizontalMax), halfHeight);
+        return new Vector2(Random.Range(horizontalMin, horizontalMax) * 0.75f, halfHeight + 20);
     }
 
     private IEnumerator Spawn()
@@ -42,7 +42,10 @@ public class AsteroidSpawner : MonoBehaviour
                 var scale = Random.Range(0.1f, 0.4f);
                 obj.transform.localScale = new Vector3(scale, scale, scale);
                 obj.GetComponent<Rigidbody2D>().mass = scale;
-                obj.GetComponent<Rigidbody2D>().velocity = Vector2.down * Random.Range(10, maxSpeed);
+                
+                var vel = new Vector2(Random.Range(-10, 10), -Random.Range(10, maxSpeed));
+                
+                obj.GetComponent<Rigidbody2D>().velocity = vel;
                 obj.GetComponent<Rigidbody2D>().AddTorque(Random.Range(30, 500));
             }
 

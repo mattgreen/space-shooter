@@ -18,11 +18,9 @@ public class Laser : MonoBehaviour
         if (col.gameObject.name == "Ship")
             return;
         
-        
         var health = col.gameObject.GetComponent<Health>();
         health.ApplyDamage(damage);
         
-
         Destroy(gameObject);
     }
     

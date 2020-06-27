@@ -19,6 +19,12 @@ public class Health : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            if (gameObject.tag == "Enemy")
+            {
+                var score = FindObjectOfType<Score>();
+                score.Increment(100);
+            }
+
             var explosive = (GameObject)Instantiate(explosion);
             explosive.transform.position = transform.position;
 

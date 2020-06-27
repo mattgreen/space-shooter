@@ -12,6 +12,9 @@ public class Asteroid : MonoBehaviour
 
     void OnBecameInvisible()
     {
+        if (transform.position.y >= 0)
+            return;
+
         Destroy(gameObject);
     }
 

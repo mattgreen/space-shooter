@@ -6,20 +6,9 @@ public class Enemy : MonoBehaviour
 {
     void OnBecameInvisible()
     {
+        if (transform.position.y >= 0)
+            return;
+
         Destroy(gameObject);
-    }
-
-    void Start()
-    {
-        StartCoroutine(Move());
-    }
-
-    private IEnumerator Move()
-    {
-        var collider = GetComponent<Rigidbody2D>();
-        while (isActiveAndEnabled) {
-            collider.AddForce(Vector2.down * 300);
-            yield return new WaitForSeconds(1.0f);
-        }
     }
 }

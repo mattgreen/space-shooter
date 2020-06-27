@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 350
-  damage: 20
+  damage: 25
 --- !u!50 &3262574561858012470
 Rigidbody2D:
   serializedVersion: 4
@@ -137,7 +137,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 100, y: 90}
+    oldSize: {x: 10, y: 19}
     newSize: {x: 100, y: 90}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

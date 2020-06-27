@@ -27,8 +27,8 @@ public class EnemySpawner : MonoBehaviour
     {
         for(int i = 0; i < waves; i++)
         {
-            yield return SpawnColumn(5);
-            yield return new WaitForSeconds(4);
+            yield return SpawnColumn(8);
+            yield return new WaitForSeconds(3);
         }
     }
 
@@ -39,8 +39,9 @@ public class EnemySpawner : MonoBehaviour
         {
             var e = (GameObject)Instantiate(enemy);
             e.transform.position = location;
+            e.GetComponent<Rigidbody2D>().velocity = Vector2.down * 40;
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(0.75f);
         }
     }
 }
