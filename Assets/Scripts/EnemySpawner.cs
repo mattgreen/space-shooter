@@ -6,11 +6,6 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
 
-    void Start()
-    {
-        StartCoroutine(Spawn(5));    
-    }
-
     private static Vector2 RandomSpawnLocation()
     {
         var camera = Camera.main;
@@ -20,28 +15,19 @@ public class EnemySpawner : MonoBehaviour
         var horizontalMin = -halfWidth;
         var horizontalMax =  halfWidth;
 
-        return new Vector2(Random.Range(horizontalMin, horizontalMax), halfHeight);
+        return new Vector2(Random.Range(horizontalMin, horizontalMax) * 0.65f, halfHeight);
     }
 
-    private IEnumerator Spawn(int waves)
-    {
-        for(int i = 0; i < waves; i++)
-        {
-            yield return SpawnColumn(8);
-            yield return new WaitForSeconds(3);
-        }
-    }
-
-    private IEnumerator SpawnColumn(int count)
+    public IEnumerator SpawnColumn(int columnCount)
     {
         var location = RandomSpawnLocation();
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < columnCount; i++)
         {
             var e = (GameObject)Instantiate(enemy);
             e.transform.position = location;
             e.GetComponent<Rigidbody2D>().velocity = Vector2.down * 40;
 
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(1f);
         }
     }
 }

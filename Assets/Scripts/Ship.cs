@@ -10,17 +10,16 @@ public class Ship : MonoBehaviour
 
     public float fireDelta = 0.2f;
 
+    public PlayerInput playerInput;
+
     private float fireCooldown = 0f;
 
-    void Update()
+    void FixedUpdate()
     {
-        var x = Input.GetAxisRaw("Horizontal");
-        var y = Input.GetAxisRaw("Vertical");
-
-        GetComponent<Rigidbody2D>().velocity = new Vector2(x, y) * movementSpeed;
+        GetComponent<Rigidbody2D>().velocity = playerInput.movement * movementSpeed;
 
         fireCooldown -= Time.deltaTime;
-        if(Input.GetKey("space") && fireCooldown <= 0)
+        if(playerInput.firePressed && fireCooldown <= 0)
         {
             fireCooldown = fireDelta;
 
@@ -29,7 +28,9 @@ public class Ship : MonoBehaviour
             laserPos.y += 10;
 
             var proj = Instantiate(projectile, laserPos, transform.rotation);
+            proj.GetComponent<Laser>().shooter = gameObject;
+            proj.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 350, ForceMode2D.Impulse);
+            proj.GetComponent<AudioSource>().Play(0);
         }
-
     }
 }

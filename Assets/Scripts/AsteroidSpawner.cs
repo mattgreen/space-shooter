@@ -12,11 +12,6 @@ public class AsteroidSpawner : MonoBehaviour
 
     public float spawnDelay = 1.0f;
 
-    void Start()
-    {
-        StartCoroutine(Spawn());
-    }
-
     private static Vector2 RandomSpawnLocation()
     {
         var camera = Camera.main;
@@ -29,7 +24,7 @@ public class AsteroidSpawner : MonoBehaviour
         return new Vector2(Random.Range(horizontalMin, horizontalMax) * 0.75f, halfHeight + 20);
     }
 
-    private IEnumerator Spawn()
+    public IEnumerator Spawn()
     {
         while (true)
         {
@@ -46,7 +41,7 @@ public class AsteroidSpawner : MonoBehaviour
                 var vel = new Vector2(Random.Range(-10, 10), -Random.Range(10, maxSpeed));
                 
                 obj.GetComponent<Rigidbody2D>().velocity = vel;
-                obj.GetComponent<Rigidbody2D>().AddTorque(Random.Range(30, 500));
+                obj.GetComponent<Rigidbody2D>().AddTorque(Random.Range(-500, 500));
             }
 
             yield return new WaitForSeconds(spawnDelay);
