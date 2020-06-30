@@ -14,6 +14,6 @@ public class Score : MonoBehaviour
 
     void Update()
     {
-        GetComponent<Text>().text = string.Format("SCORE: {0}", score);
+        GetComponent<Text>().text = string.Format("SCORE: {0}", score.ToString("000000"));
     }
 }
