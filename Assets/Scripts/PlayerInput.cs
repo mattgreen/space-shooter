@@ -13,6 +13,6 @@ public class PlayerInput : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        firePressed = Input.GetKey("space");
+        firePressed = Input.GetButton("Fire1") || Input.GetButton("Fire2");
     }
 }

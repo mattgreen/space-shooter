@@ -14,9 +14,35 @@ public class Ship : MonoBehaviour
 
     private float fireCooldown = 0f;
 
+    private Vector2 bounds = new Vector2();
+    
+    private Vector2 size = new Vector2();
+
+    void Start()
+    {
+        var camera = Camera.main;
+        float halfHeight = camera.orthographicSize;
+        float halfWidth = camera.aspect * halfHeight;
+
+        bounds.x = halfWidth;
+        bounds.y = halfHeight;
+
+        size.x = transform.GetComponent<SpriteRenderer>().bounds.size.x / 2;
+        size.y = transform.GetComponent<SpriteRenderer>().bounds.size.y / 2;
+    }
+
     void FixedUpdate()
     {
-        GetComponent<Rigidbody2D>().velocity = playerInput.movement * movementSpeed;
+        var vel = playerInput.movement * movementSpeed;
+        
+        if (transform.position.x > -187 && transform.position.x < 187)
+        {
+            GetComponent<Rigidbody2D>().velocity = playerInput.movement * movementSpeed;
+        }   
+        else
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
 
         fireCooldown -= Time.deltaTime;
         if(playerInput.firePressed && fireCooldown <= 0)
@@ -32,5 +58,13 @@ public class Ship : MonoBehaviour
             proj.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 350, ForceMode2D.Impulse);
             proj.GetComponent<AudioSource>().Play(0);
         }
+    }
+
+    void LateUpdate()
+    {
+        var x = Mathf.Clamp(transform.position.x, -bounds.x + size.x, bounds.x - size.x);
+        var y = Mathf.Clamp(transform.position.y, -bounds.y + size.y, bounds.y - size.y);
+
+        transform.position = new Vector2(x, y);
     }
 }
