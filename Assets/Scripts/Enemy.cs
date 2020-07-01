@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public GameObject laser;
+    public GameObject bullet;
 
     private Ship ship;
 
@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
         {
             if (ship != null)
             {
-                var shot = Instantiate(laser, transform.position, transform.rotation);
+                var shot = Instantiate(bullet, transform.position, transform.rotation);
                 var dir = ship.transform.position - shot.transform.position;
 
                 shot.GetComponent<Rigidbody2D>().AddForce(dir.normalized * 65, ForceMode2D.Impulse);

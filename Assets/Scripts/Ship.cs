@@ -25,7 +25,7 @@ public class Ship : MonoBehaviour
 
             var size = GetComponent<BoxCollider2D>().size;
             var laserPos = transform.position;
-            laserPos.y += 10;
+            laserPos.y += 7;
 
             var proj = Instantiate(projectile, laserPos, transform.rotation);
             proj.GetComponent<Laser>().shooter = gameObject;
