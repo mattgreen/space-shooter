@@ -17,21 +17,31 @@ public class Level : MonoBehaviour
 
     private IEnumerator AdvanceDifficulty()
     {
-        for (int i = 0; ; i++)
-        {
-            if ((i % 2) == 0)
-                asteroidSpawner.spawnCount++;
+        var score = FindObjectOfType<Score>();
 
+        int enemySpawnCount = 5;
+
+        int wave = 1;
+        while (true)
+        {
+            if ((wave % 2) == 0)
+            {
+                asteroidSpawner.spawnCount++;
+                enemySpawnCount++;
+            }
             asteroidSpawner.spawnDelay -= 0.02f;
             asteroidSpawner.maxSpeed += 3;
 
-            for (int j = 0; j < i + 3; j++)
+            for (int j = 0; j < wave + 3; j++)
             {
-                yield return StartCoroutine(enemySpawner.SpawnColumn(5));
+                yield return StartCoroutine(enemySpawner.SpawnColumn(enemySpawnCount));
                 yield return new WaitForSeconds(3f);
+                
+                score.IncrementWave();
             }
 
             // yield return new WaitForSeconds(phaseLength);
+            wave++;
         }
     }
 }

@@ -22,7 +22,15 @@ public class Health : MonoBehaviour
             if (gameObject.tag == "Enemy")
             {
                 var score = FindObjectOfType<Score>();
-                score.Increment(100);
+                score.IncrementScore(100);
+
+                var source = gameObject.GetComponent<AudioSource>();
+                AudioSource.PlayClipAtPoint(source.clip, Camera.main.transform.position, 0.5f);
+            }
+            else if (gameObject.tag == "Player")
+            {
+                var source = gameObject.GetComponent<AudioSource>();
+                AudioSource.PlayClipAtPoint(source.clip, Camera.main.transform.position);
             }
 
             var explosive = (GameObject)Instantiate(explosion);

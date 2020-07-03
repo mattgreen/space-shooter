@@ -33,30 +33,24 @@ public class Ship : MonoBehaviour
 
     void FixedUpdate()
     {
-        var vel = playerInput.movement * movementSpeed;
+        Vector3 movement = playerInput.movement;
         
-        if (transform.position.x > -187 && transform.position.x < 187)
-        {
-            GetComponent<Rigidbody2D>().velocity = playerInput.movement * movementSpeed;
-        }   
-        else
-        {
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        }
+        var target = transform.position + (movement * (movementSpeed * Time.deltaTime));
+        GetComponent<Rigidbody2D>().MovePosition(target);
 
         fireCooldown -= Time.deltaTime;
         if(playerInput.firePressed && fireCooldown <= 0)
         {
             fireCooldown = fireDelta;
-
-            var size = GetComponent<BoxCollider2D>().size;
-            var laserPos = transform.position;
-            laserPos.y += 7;
+            
+            var laserPos = transform.position + (Vector3.up * 7);
 
             var proj = Instantiate(projectile, laserPos, transform.rotation);
             proj.GetComponent<Laser>().shooter = gameObject;
             proj.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 350, ForceMode2D.Impulse);
-            proj.GetComponent<AudioSource>().Play(0);
+
+            var source = proj.GetComponent<AudioSource>();
+            AudioSource.PlayClipAtPoint(source.clip, Camera.main.transform.position);
         }
     }
 
