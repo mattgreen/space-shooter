@@ -54,6 +54,19 @@ public class Ship : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        var health = gameObject.GetComponent<Health>();
+        if (col.gameObject.tag == "Asteroid")
+        {
+            health.ApplyDamage(40f);
+        }
+        else if (col.gameObject.tag == "Enemy")
+        {
+            health.ApplyDamage(40f);
+        }
+    }
+
     void LateUpdate()
     {
         var x = Mathf.Clamp(transform.position.x, -bounds.x + size.x, bounds.x - size.x);

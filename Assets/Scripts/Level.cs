@@ -32,6 +32,8 @@ public class Level : MonoBehaviour
             asteroidSpawner.spawnDelay -= 0.02f;
             asteroidSpawner.maxSpeed += 3;
 
+            enemySpawner.SpawnStation();
+
             for (int j = 0; j < wave + 3; j++)
             {
                 yield return StartCoroutine(enemySpawner.SpawnColumn(enemySpawnCount));

@@ -25,6 +25,11 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator Fire()
     {
+        // var x = Random.Range(-180, 0);
+        // var y = Random.Range(-60, 0);
+
+        // var destination = new Vector2(x, y);
+
         while (true)
         {
             if (ship != null)
