@@ -29,21 +29,20 @@ public class Level : MonoBehaviour
                 asteroidSpawner.spawnCount++;
                 enemySpawnCount++;
             }
+
             asteroidSpawner.spawnDelay -= 0.02f;
             asteroidSpawner.maxSpeed += 3;
 
-            enemySpawner.SpawnStation();
-
-            for (int j = 0; j < wave + 3; j++)
-            {
-                yield return StartCoroutine(enemySpawner.SpawnColumn(enemySpawnCount));
-                yield return new WaitForSeconds(3f);
+            yield return StartCoroutine(enemySpawner.SpawnColumn(enemySpawnCount));
+            yield return new WaitForSeconds(3f);
                 
-                score.IncrementWave();
+            if ((wave % 4) == 0)
+            {
+                enemySpawner.SpawnStation();
             }
 
-            // yield return new WaitForSeconds(phaseLength);
             wave++;
+            score.IncrementWave();
         }
     }
 }

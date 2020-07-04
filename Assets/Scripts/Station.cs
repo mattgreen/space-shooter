@@ -6,6 +6,8 @@ public class Station : MonoBehaviour
 {
     private Ship ship;
 
+    public AudioClip introduction;
+
     void OnBecameInvisible()
     {
         if (transform.position.x >= 0)
@@ -16,6 +18,7 @@ public class Station : MonoBehaviour
 
     public void Start()
     {
+        AudioSource.PlayClipAtPoint(introduction, Camera.main.transform.position);
         ship = FindObjectOfType<Ship>();
 
         // StartCoroutine(Roam());

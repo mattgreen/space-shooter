@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
     public float startingHealth = 100f;
 
     public GameObject explosion;
+    public AudioClip explosionSound;
 
     private float health;
     

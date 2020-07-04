@@ -138,9 +138,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d85a09b06dd411186bccb3c6ef18f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 150
+  startingHealth: 200
   explosion: {fileID: 8525001078941496809, guid: ead71ece2a2ae484896b903a83d226fc,
     type: 3}
+  explosionSound: {fileID: 0}
 --- !u!114 &166929848972536679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83574be5566fb40939fc80c70877214c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  introduction: {fileID: 8300000, guid: 56a8a9fe94ed94f43b0c5c25442b1aa4, type: 3}
 --- !u!82 &166929848972536674
 AudioSource:
   m_ObjectHideFlags: 0
@@ -261,7 +263,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1

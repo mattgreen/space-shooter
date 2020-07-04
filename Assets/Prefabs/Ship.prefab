@@ -164,3 +164,4 @@ MonoBehaviour:
   startingHealth: 200
   explosion: {fileID: 8525001078941496809, guid: ead71ece2a2ae484896b903a83d226fc,
     type: 3}
+  explosionSound: {fileID: 8300000, guid: fedb1d490bd89474088ceb09d2142cf6, type: 3}
